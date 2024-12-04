@@ -1,0 +1,18 @@
+# Sprout API
+An expense tracking API built with Go and PostgreSQL where users can manage their expenses.
+
+## Features
+
+| Name              | Description                                                                                                       | Endpoint                       | Auth token required? | JSON body                                                                                          |
+|-------------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------|----------------------|----------------------------------------------------------------------------------------------------|
+| Healthcheck       | Show application informations.                                                                                    | GET /v1/healthcheck            | No                   | -                                                                                                  |
+| Metrics           | Display application metrics.                                                                                      | GET /debug/vars                | No                   | -                                                                                                  |
+| Sign up           | Create an account with your name, email, and password.                                                            | POST /v1/users                 | No                   | name, email, password                                                                              |   
+| Activate user     | Activate the account with a token sent to the user's email.                                                       | PUT /v1/users/activate         | No                   | token                                                                                              |
+| Get auth token    | Generate a new authentication token.                                                                              | POST /v1/tokens/authentication | No                   | email, password                                                                                    |
+| Create expense    | Create an expense with the data, spent at, notes (optional), category, payment method, currency code, and amount. | POST /v1/expenses              | Yes                  | date (yyyy-mm-dd), spent_at, notes, category, payment_method, iso_currency_code, amount            |
+| Get expense by ID | Get a particular expense                                                                                          | GET /v1/expenses/{id}          | Yes                  | -                                                                                                  |
+| Get expenses      | Get expenses for a particular month and year                                                                      | GET /v1/expenses               | Yes                  | month, year (default current), page, page_size, sort                                               |
+| Update expense    | Update an expense                                                                                                 | PATCH /v1/expenses/{id}        | Yes                  | date (yyyy-mm-dd), spent_at, notes, category, payment_method, iso_currency_code, amount (optional) |
+| Delete expense    | Delete a particular expense                                                                                       | DELETE /v1/expenses/{id}       | Yes                  | -                                                                                                  |
+
