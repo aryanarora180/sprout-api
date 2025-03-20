@@ -47,6 +47,9 @@ type config struct {
 	cors struct {
 		trustedOrigins []string
 	}
+	gemini struct {
+		apiKey string
+	}
 }
 
 type application struct {
@@ -82,6 +85,8 @@ func main() {
 		cfg.cors.trustedOrigins = strings.Fields(val)
 		return nil
 	})
+
+	flag.StringVar(&cfg.gemini.apiKey, "gemini-api-key", "", "API key for Gemini")
 
 	displayVersion := flag.Bool("version", false, "Display version and exit")
 

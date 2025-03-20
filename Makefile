@@ -5,7 +5,7 @@ include .envrc
 .PHONY run/api:
 run/api:
 	@echo 'Running API...'
-	go run ./cmd/api -db-dsn=${SPROUT_DB_DSN} -smtp-username=${SMTP_USERNAME} -smtp-password=${SMTP_PASSWORD}
+	go run ./cmd/api -db-dsn=${SPROUT_DB_DSN} -smtp-username=${SMTP_USERNAME} -smtp-password=${SMTP_PASSWORD} -gemini-api-key=${GEMINI_API_KEY}
 
 .PHONY db/migrations/new:
 db/migrations/new:

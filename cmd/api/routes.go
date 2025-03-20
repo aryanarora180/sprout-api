@@ -21,6 +21,8 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodPatch, "/v1/expenses/:id", app.requireActivatedUser(app.updateExpenseHandler))
 	router.HandlerFunc(http.MethodDelete, "/v1/expenses/:id", app.requireActivatedUser(app.deleteExpenseHandler))
 
+	router.HandlerFunc(http.MethodGet, "/v1/ai/classify-receipt", app.requireActivatedUser(app.classifyReceiptHandler))
+
 	router.HandlerFunc(http.MethodPost, "/v1/users", app.registerUserHandler)
 	router.HandlerFunc(http.MethodPut, "/v1/users/activate", app.activateUserHandler)
 

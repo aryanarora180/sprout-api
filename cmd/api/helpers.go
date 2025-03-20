@@ -86,6 +86,26 @@ func (app *application) readJSON(w http.ResponseWriter, r *http.Request, dst int
 	return nil
 }
 
+func (app *application) readImage(r *http.Request, maxSize int64, fileKey string) ([]byte, error) {
+	err := r.ParseMultipartForm(maxSize)
+	if err != nil {
+		return nil, err
+	}
+
+	file, _, err := r.FormFile(fileKey)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	fileBytes, err := io.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
+
+	return fileBytes, nil
+}
+
 func (app *application) readString(qs url.Values, key string, defaultValue string) string {
 	s := qs.Get(key)
 
